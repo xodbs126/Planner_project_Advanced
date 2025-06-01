@@ -19,7 +19,13 @@ public class UserRegisterDTO {
     private String email;
 
 
+    public UserRegisterDTO() {
+    }
+
     public UserRegisterDTO(User user) {
 
+        this.userName = user.getName();
+        this.password = user.getPassword();
+        this.email = user.getEmail();
     }
 }

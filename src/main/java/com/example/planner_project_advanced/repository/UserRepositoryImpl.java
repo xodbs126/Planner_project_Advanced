@@ -21,8 +21,7 @@ public class UserRepositoryImpl implements UserRepository{
         String password = user.getPassword();
         String email = user.getEmail();
 
-        String sql = "INSERT INTO users (username, password,email,created_at) VALUE (?,?,?,NOW())";
-
+        String sql = "INSERT INTO users (name, password, email, created_at) VALUES (?, ?, ?, NOW())";
         jdbcTemplate.update(sql, userName, password, email);
     }
 }
