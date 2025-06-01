@@ -114,6 +114,12 @@ public class PlanRepositoryImpl implements PlanRepository {
         return jdbcTemplate.queryForObject(sql, new Object[]{planId}, new PlanRowMapper());
     }
 
+    @Override
+    public void deletePlan(Long userId, Long planId) {
+        String sql = "DELETE FROM plans WHERE id = ? AND user_id = ?";
+        jdbcTemplate.update(sql, planId, userId);
+    }
+
     private static class PlanRowMapper implements RowMapper<Plan> {
         @Override
         public Plan mapRow(ResultSet rs, int rowNum) throws SQLException {

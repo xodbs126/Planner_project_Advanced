@@ -43,4 +43,19 @@ public class UserServiceImpl implements UserService {
     public void updateUserName(Long userId, String name) {
         userRepository.updateUserName(userId, name);
     }
+
+    @Override
+    public User findUserByName(String userName) {
+        allUser = userRepository.findAllUser();
+
+        for (User user : allUser) {
+            if (user.getName().equals(userName)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
+
 }

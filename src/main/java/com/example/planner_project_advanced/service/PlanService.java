@@ -1,6 +1,7 @@
 package com.example.planner_project_advanced.service;
 
 import com.example.planner_project_advanced.dto.CreatePlanDTO;
+import com.example.planner_project_advanced.dto.DeletePlanDTO;
 import com.example.planner_project_advanced.dto.PlanResponseDTO;
 import com.example.planner_project_advanced.dto.PlanUpdateDTO;
 import jakarta.validation.Valid;
@@ -12,4 +13,6 @@ public interface PlanService {
     Page<PlanResponseDTO> findAll(String updatedDate, String userName, Long userId, int page, int size);
 
     PlanResponseDTO updatePlan(Long planId,Long userId, @Valid PlanUpdateDTO planUpdateDTO);
+
+    void delete(@Valid DeletePlanDTO deletePlanDTO);
 }

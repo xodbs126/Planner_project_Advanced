@@ -2,6 +2,7 @@ package com.example.planner_project_advanced.service;
 
 
 import com.example.planner_project_advanced.dto.CreatePlanDTO;
+import com.example.planner_project_advanced.dto.DeletePlanDTO;
 import com.example.planner_project_advanced.dto.PlanResponseDTO;
 import com.example.planner_project_advanced.dto.PlanUpdateDTO;
 import com.example.planner_project_advanced.entity.Plan;
@@ -65,6 +66,16 @@ public class PlanServiceImpl implements PlanService {
 
 
         return new PlanResponseDTO(plan,user.getName());
+    }
+
+    @Override
+    public void delete(DeletePlanDTO deletePlanDTO) {
+        User user = userService.findUserByName(deletePlanDTO.getUserName());
+
+        if (!user.getPassword().equals(deletePlanDTO.getPassword())) {
+            return;
+        }
+        planRepository.deletePlan(user.getId(), deletePlanDTO.getId());
     }
 
 }
