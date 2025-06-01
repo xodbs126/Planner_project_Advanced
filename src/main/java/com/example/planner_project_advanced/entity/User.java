@@ -2,11 +2,16 @@ package com.example.planner_project_advanced.entity;
 
 import com.example.planner_project_advanced.dto.UserRegisterDTO;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
+
+@Getter
+@Setter
 public class User {
 
     @Id
