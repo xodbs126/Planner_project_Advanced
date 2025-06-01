@@ -1,8 +1,12 @@
 package com.example.planner_project_advanced.dto;
 
+import com.example.planner_project_advanced.entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
 
+
+@Getter
 public class UserRegisterDTO {
 
 
@@ -15,6 +19,7 @@ public class UserRegisterDTO {
     private String email;
 
 
+    public UserRegisterDTO(User user) {
 
-
+    }
 }
