@@ -1,7 +1,5 @@
 package com.example.planner_project_advanced.entity;
 
-import com.example.planner_project_advanced.dto.UserRegisterDTO;
-
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -27,10 +25,15 @@ public class User {
 
     private String email;
 
+    public User() {
+    }
+
     public User(String name, String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.createdAt = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
+
+
 }
