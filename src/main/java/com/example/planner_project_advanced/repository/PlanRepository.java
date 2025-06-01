@@ -9,4 +9,8 @@ public interface PlanRepository {
     void createPlan(Plan plan);
 
     Page<Plan> findAll(String updatedDate, String userName, Long userId, int page, int size);
+
+    Plan updatePlan(Long planId,Long userId, String content);
+
+    Plan findPlanById(Long planId);
 }

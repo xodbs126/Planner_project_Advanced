@@ -19,8 +19,6 @@ public class User {
 
     private String password;
 
-    private Long planId;
-
     private LocalDateTime createdAt;
 
     private String email;

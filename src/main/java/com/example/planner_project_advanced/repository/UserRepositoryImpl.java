@@ -35,6 +35,13 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.query(sql, new UserRowMapper());
     }
 
+    @Override
+    public void updateUserName(Long userId, String name) {
+        String sql = "UPDATE users SET name = ? WHERE id = ?";
+        jdbcTemplate.update(sql, name, userId);
+    }
+
+
     private static class UserRowMapper implements RowMapper<User> {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -96,6 +96,24 @@ public class PlanRepositoryImpl implements PlanRepository {
         }, params.toArray());
     }
 
+    @Override
+    public Plan updatePlan(Long planId, Long userId, String content) {
+        String updateSql = "UPDATE plans SET content = ?, edited_at = NOW() WHERE id = ? AND user_id = ?";
+        int rows = jdbcTemplate.update(updateSql, content, planId, userId);
+
+        if (rows == 0) {
+            return null;
+        }
+
+        return findPlanById(planId);
+    }
+
+    @Override
+    public Plan findPlanById(Long planId) {
+        String sql = "SELECT * FROM plans WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{planId}, new PlanRowMapper());
+    }
+
     private static class PlanRowMapper implements RowMapper<Plan> {
         @Override
         public Plan mapRow(ResultSet rs, int rowNum) throws SQLException {

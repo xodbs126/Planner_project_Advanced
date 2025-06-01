@@ -3,10 +3,11 @@ package com.example.planner_project_advanced.controller;
 
 import com.example.planner_project_advanced.dto.CreatePlanDTO;
 import com.example.planner_project_advanced.dto.PlanResponseDTO;
+import com.example.planner_project_advanced.dto.PlanUpdateDTO;
 import com.example.planner_project_advanced.service.PlanService;
 import com.example.planner_project_advanced.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -41,5 +42,14 @@ public class PlanController {
     ) {
         Page<PlanResponseDTO> result = planService.findAll(updatedDate, userName, userId, page - 1, size);
         return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/plans/{planId}/{userId}")
+    public ResponseEntity<PlanResponseDTO> updatePlan(
+            @PathVariable Long planId,
+            @PathVariable Long userId,
+            @Valid @RequestBody PlanUpdateDTO planUpdateDTO
+    ){
+        return ResponseEntity.ok(planService.updatePlan(planId,userId, planUpdateDTO));
     }
 }

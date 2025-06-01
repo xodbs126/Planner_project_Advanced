@@ -9,4 +9,5 @@ public interface UserRepository {
 
     List<User> findAllUser();
 
+    void updateUserName(Long userId, String name);
 }

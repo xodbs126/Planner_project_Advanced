@@ -8,4 +8,6 @@ public interface UserService {
     UserRegisterDTO registerUser(@Valid UserRegisterDTO registerDTO);
 
     User findUserById(Long userId);
+
+    void updateUserName(Long userId, String name);
 }

@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public void updateUserName(Long userId, String name) {
+        userRepository.updateUserName(userId, name);
+    }
 }
