@@ -2,15 +2,15 @@ package com.example.planner_project_advanced.controller;
 
 
 import com.example.planner_project_advanced.dto.CreatePlanDTO;
+import com.example.planner_project_advanced.dto.PlanResponseDTO;
 import com.example.planner_project_advanced.service.PlanService;
 import com.example.planner_project_advanced.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PlanController {
@@ -31,4 +31,15 @@ public class PlanController {
         return new ResponseEntity<>(planService.createPlan(userId, createPlanDTO), HttpStatus.OK);
     }
 
+    @GetMapping("/plans/view")
+    public ResponseEntity<Page<PlanResponseDTO>> findAll(
+            @RequestParam(required = false) String updatedDate,
+            @RequestParam(required = false) String userName,
+            @RequestParam(required = false) Long userId,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Page<PlanResponseDTO> result = planService.findAll(updatedDate, userName, userId, page - 1, size);
+        return ResponseEntity.ok(result);
+    }
 }

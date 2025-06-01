@@ -22,7 +22,7 @@ public class UserController {
     public ResponseEntity<UserRegisterDTO> userRegister(
             @RequestBody @Valid UserRegisterDTO registerDTO){
         return new ResponseEntity<>(userService.registerUser(registerDTO), HttpStatus.CREATED);
-
     }
+
 
 }

@@ -24,6 +24,9 @@ public class Plan {
     private LocalDateTime createdAt;
     private LocalDateTime editedAt;
 
+    public Plan() {
+    }
+
     public Plan(Long userId, CreatePlanDTO createPlanDTO) {
         this.userId = userId;
         this.content = createPlanDTO.getContent();
